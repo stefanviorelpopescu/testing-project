@@ -12,7 +12,7 @@
 	<artifactId>testing-project</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>testing-project</name>
-	<description>Demo tsting project for Spring Boot</description>
+	<description>Demo testing project for Spring Boot</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -34,6 +34,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -50,6 +54,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -64,6 +73,24 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.pitest</groupId>
+				<artifactId>pitest-maven</artifactId>
+				<version>1.15.8</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.pitest</groupId>
+						<artifactId>pitest-junit5-plugin</artifactId>
+						<version>1.2.1</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<excludedClasses>
+						<param>org.example.testing_project.controller.*</param>
+						<param>org.example.testing_project.dao.*</param>
+					</excludedClasses>
 				</configuration>
 			</plugin>
 		</plugins>
